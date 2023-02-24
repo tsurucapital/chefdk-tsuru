@@ -216,7 +216,9 @@ GEM
       ms_rest_azure (~> 0.12.0)
     azure_mgmt_storage (0.23.0)
       ms_rest_azure (~> 0.12.0)
+    backport (1.2.0)
     bcrypt_pbkdf (1.1.0)
+    benchmark (0.2.1)
     berkshelf (7.2.0)
       chef (>= 15.7.32)
       chef-config
@@ -324,6 +326,7 @@ GEM
       multi_json
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    e2mmap (0.1.0)
     ed25519 (1.2.4)
     erubi (1.10.0)
     erubis (2.7.0)
@@ -419,6 +422,7 @@ GEM
       tty-prompt (~> 0.17)
       tty-table (~> 0.10)
     ipaddress (0.8.3)
+    jaro_winkler (1.5.4)
     jmespath (1.4.0)
     json (2.5.1)
     jwt (2.2.3)
@@ -444,6 +448,11 @@ GEM
       chef (>= 11.0.0)
       diffy (>= 3.0.1)
       git (>= 1.2.5)
+    kramdown (2.4.0)
+      rexml
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
+    language_server-protocol (3.17.0.3)
     libyajl2 (2.1.0)
     license-acceptance (1.0.19)
       pastel (~> 0.7)
@@ -519,7 +528,7 @@ GEM
     os (1.1.1)
     paint (1.0.1)
     parallel (1.20.1)
-    parser (3.0.1.1)
+    parser (3.2.1.0)
       ast (~> 2.4.1)
     parslet (1.8.2)
     pastel (0.8.0)
@@ -536,6 +545,7 @@ GEM
     rainbow (3.0.0)
     rake (13.0.3)
     rchardet (1.8.0)
+    rcodetools (0.8.5.0)
     regexp_parser (2.1.1)
     representable (3.1.1)
       declarative (< 0.1.0)
@@ -543,6 +553,8 @@ GEM
       uber (< 0.2.0)
     retriable (3.1.2)
     retryable (3.0.5)
+    reverse_markdown (2.1.1)
+      nokogiri
     rexml (3.2.5)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
@@ -560,17 +572,21 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.2)
-    rubocop (1.15.0)
+    rubocop (1.44.1)
+      json (~> 2.3)
       parallel (~> 1.10)
-      parser (>= 3.0.0.0)
+      parser (>= 3.2.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
-      rexml
-      rubocop-ast (>= 1.5.0, < 2.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.24.1, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.5.0)
-      parser (>= 3.0.1.1)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.26.0)
+      parser (>= 3.2.1.0)
+    rubocop-performance (1.15.2)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.4)
     rubyntlm (0.6.3)
@@ -585,10 +601,28 @@ GEM
       faraday (>= 0.17.3, < 2.0)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
+    solargraph (0.41.2)
+      backport (~> 1.1)
+      benchmark
+      bundler (>= 1.17.2)
+      e2mmap
+      jaro_winkler (~> 1.5)
+      kramdown (~> 2.3)
+      kramdown-parser-gfm (~> 1.1)
+      parser (~> 3.0)
+      reverse_markdown (>= 1.0.5, < 3)
+      rubocop (>= 0.52)
+      thor (~> 1.0)
+      tilt (~> 2.0)
+      yard (~> 0.9, >= 0.9.24)
     solve (4.0.4)
       molinillo (~> 0.6)
       semverse (>= 1.1, < 4.0)
     sslshake (1.3.1)
+    standard (1.24.3)
+      language_server-protocol (~> 3.17.0.2)
+      rubocop (= 1.44.1)
+      rubocop-performance (= 1.15.2)
     strings (0.2.1)
       strings-ansi (~> 0.2)
       unicode-display_width (>= 1.5, < 3.0)
@@ -611,6 +645,7 @@ GEM
       winrm-fs (~> 1.1)
     thor (1.1.0)
     thread_safe (0.3.6)
+    tilt (2.1.0)
     timeliness (0.3.10)
     tomlrb (1.3.0)
     trailblazer-option (0.1.1)
@@ -729,7 +764,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
-    unicode-display_width (2.0.0)
+    unicode-display_width (2.4.2)
     unicode_utils (1.4.0)
     uuidtools (2.2.0)
     webrick (1.7.0)
@@ -753,6 +788,8 @@ GEM
       winrm (~> 2.0)
     wisper (2.0.1)
     wmi-lite (1.0.5)
+    yard (0.9.28)
+      webrick (~> 1.7.0)
 
 PLATFORMS
   ruby
@@ -773,8 +810,11 @@ DEPENDENCIES
   knife-spork
   ohai
   pry
+  rcodetools
   rubocop
+  solargraph
+  standard (= 1.24.3)
   test-kitchen
 
 BUNDLED WITH
-   2.1.4
+   2.4.6
